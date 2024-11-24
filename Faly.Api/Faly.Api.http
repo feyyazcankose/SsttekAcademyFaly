@@ -1,0 +1,6 @@
+@Faly.Api_HostAddress = http://localhost:5057
+
+GET {{Faly.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
