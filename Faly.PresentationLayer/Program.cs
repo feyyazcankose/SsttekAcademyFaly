@@ -34,6 +34,14 @@ builder
         options.LogoutPath = "/Account/Logout";
     });
 
+// Session servislerini ekleme
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var apiUrl = builder.Configuration["ApiUrl"];
 builder.Services.AddHttpClient(
     "ApiClient",
