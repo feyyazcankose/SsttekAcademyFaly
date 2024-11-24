@@ -19,7 +19,7 @@ public class UserController : CustomControllerBase
 
     [HttpPost("register")]
     [SwaggerOperation(Summary = "User Registration", Description = "Register a new user.")]
-    [ProducesResponseType(typeof(List<UserDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
     public async Task<IActionResult> Register([FromBody] UserRegistrationDto registrationDto)
     {
         return HandleServiceResult(await _userService.RegisterUserAsync(registrationDto));
@@ -27,7 +27,7 @@ public class UserController : CustomControllerBase
 
     [HttpPost("login")]
     [SwaggerOperation(Summary = "User Login", Description = "Login an existing user.")]
-    [ProducesResponseType(typeof(List<string>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
     public async Task<IActionResult> Login([FromBody] UserLoginDto loginDto)
     {
         return HandleServiceResult(await _userService.LoginUserAsync(loginDto));

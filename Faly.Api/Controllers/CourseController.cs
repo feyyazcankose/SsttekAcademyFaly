@@ -30,7 +30,7 @@ public class CourseController : CustomControllerBase
         Summary = "Get Course Details",
         Description = "Retrieve details of a specific course."
     )]
-    [ProducesResponseType(typeof(CourseDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CourseDetailDto), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetCourseDetails(int id)
     {
         return HandleServiceResult(await _courseService.GetCourseByIdAsync(id));

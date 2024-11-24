@@ -22,12 +22,14 @@ public class UserService : IUserService
         _configuration = configuration;
     }
 
-    public async Task<ServiceResult<UserDto>> RegisterUserAsync(UserRegistrationDto registrationDto)
+    public async Task<ServiceResult<AuthResponseDto>> RegisterUserAsync(
+        UserRegistrationDto registrationDto
+    )
     {
         var existingUser = await _userRepository.GetUserByEmailAsync(registrationDto.Email);
         if (existingUser != null)
         {
-            return ServiceResult<UserDto>.ErrorResult("Email is already in use.");
+            return ServiceResult<AuthResponseDto>.ErrorResult("Email is already in use.");
         }
 
         var newUser = new ApplicationUser
@@ -41,7 +43,7 @@ public class UserService : IUserService
         var result = await _userRepository.CreateUserAsync(newUser, registrationDto.Password);
         if (!result.Succeeded)
         {
-            return ServiceResult<UserDto>.ErrorResult("User registration failed.");
+            return ServiceResult<AuthResponseDto>.ErrorResult("User registration failed.");
         }
 
         var userDto = new UserDto
@@ -52,25 +54,32 @@ public class UserService : IUserService
             Email = newUser.Email,
         };
 
-        return ServiceResult<UserDto>.SuccessResult(userDto, "User registered successfully.");
+        var token = GenerateJwtToken(newUser);
+        var response = new AuthResponseDto { AccessToken = token };
+
+        return ServiceResult<AuthResponseDto>.SuccessResult(
+            response,
+            "User registered successfully."
+        );
     }
 
-    public async Task<ServiceResult<string>> LoginUserAsync(UserLoginDto loginDto)
+    public async Task<ServiceResult<AuthResponseDto>> LoginUserAsync(UserLoginDto loginDto)
     {
         var user = await _userRepository.GetUserByEmailAsync(loginDto.Email);
         if (user == null)
         {
-            return ServiceResult<string>.ErrorResult("Invalid email or password.");
+            return ServiceResult<AuthResponseDto>.ErrorResult("Invalid email or password.");
         }
 
         var isValidPassword = await _userRepository.CheckPasswordAsync(user, loginDto.Password);
         if (!isValidPassword)
         {
-            return ServiceResult<string>.ErrorResult("Invalid email or password.");
+            return ServiceResult<AuthResponseDto>.ErrorResult("Invalid email or password.");
         }
 
         var token = GenerateJwtToken(user);
-        return ServiceResult<string>.SuccessResult(token, "Login successful.");
+        var response = new AuthResponseDto { AccessToken = token };
+        return ServiceResult<AuthResponseDto>.SuccessResult(response, "Login successful.");
     }
 
     private string GenerateJwtToken(ApplicationUser user)

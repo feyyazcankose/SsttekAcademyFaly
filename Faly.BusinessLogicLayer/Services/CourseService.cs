@@ -60,7 +60,6 @@ public class CourseService : ICourseService
                         {
                             Id = v.Id,
                             Title = v.Title,
-                            Url = v.Url,
                             Description = v.Description,
                             DurationInSeconds = v.DurationInSeconds,
                         })

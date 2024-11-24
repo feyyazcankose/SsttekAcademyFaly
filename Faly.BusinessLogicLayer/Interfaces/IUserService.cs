@@ -5,6 +5,6 @@ namespace Faly.BussinessLogicLayer.Interfaces;
 
 public interface IUserService
 {
-    Task<ServiceResult<UserDto>> RegisterUserAsync(UserRegistrationDto registrationDto);
-    Task<ServiceResult<string>> LoginUserAsync(UserLoginDto loginDto);
+    Task<ServiceResult<AuthResponseDto>> RegisterUserAsync(UserRegistrationDto registrationDto);
+    Task<ServiceResult<AuthResponseDto>> LoginUserAsync(UserLoginDto loginDto);
 }

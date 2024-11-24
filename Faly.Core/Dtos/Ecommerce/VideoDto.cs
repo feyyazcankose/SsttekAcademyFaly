@@ -13,9 +13,9 @@ public class VideoDto
     [DefaultValue("Introduction Video")]
     public string Title { get; set; } = default!;
 
-    [SwaggerSchema("URL of the video.")]
-    [DefaultValue("https://example.com/video.mp4")]
-    public string Url { get; set; } = default!;
+    // [SwaggerSchema("URL of the video.")]
+    // [DefaultValue("https://example.com/video.mp4")]
+    // public string Url { get; set; } = default!;
 
     [SwaggerSchema("Description of the video.")]
     [DefaultValue("This video introduces the course.")]
