@@ -25,7 +25,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/Faly.Core.csproj": {
+                "projectPath": "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/Faly.Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -45,6 +49,14 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -62,6 +74,59 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/8.0.10/libexec/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/Faly.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/Faly.Core.csproj",
+        "projectName": "Faly.Core",
+        "projectPath": "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/Faly.Core.csproj",
+        "packagesPath": "/Users/feyyazcankose/.nuget/packages/",
+        "outputPath": "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/feyyazcankose/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

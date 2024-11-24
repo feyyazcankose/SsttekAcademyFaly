@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faly.BusinessLogicLayer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faly.Api", "Faly.Api\Faly.Api.csproj", "{F536691F-C3F4-445E-BDA9-918FCA46352C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faly.Core", "Faly.Core\Faly.Core.csproj", "{43967F0C-A04A-4B2F-91BF-DECAC80149E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{F536691F-C3F4-445E-BDA9-918FCA46352C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F536691F-C3F4-445E-BDA9-918FCA46352C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F536691F-C3F4-445E-BDA9-918FCA46352C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43967F0C-A04A-4B2F-91BF-DECAC80149E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43967F0C-A04A-4B2F-91BF-DECAC80149E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43967F0C-A04A-4B2F-91BF-DECAC80149E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43967F0C-A04A-4B2F-91BF-DECAC80149E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
