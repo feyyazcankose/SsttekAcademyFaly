@@ -70,8 +70,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var serviceProvider = scope.ServiceProvider;
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
     await AppDbInitialize.InitializeRoles(serviceProvider);
     await AppDbInitialize.InitializeUser(serviceProvider);
+    await AppDbInitialize.InitializeCourse(context);
 }
 
 app.Use(

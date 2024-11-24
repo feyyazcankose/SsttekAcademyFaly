@@ -10,6 +10,8 @@ public class AppDbContext : IdentityDbContext
         : base(options) { }
 
     public DbSet<CourseCategory> CourseCategory { get; set; }
+    public DbSet<Category> Category { get; set; }
+
     public DbSet<Course> Courses { get; set; }
     public DbSet<CourseSection> CourseSection { get; set; }
     public DbSet<Video> Video { get; set; }
