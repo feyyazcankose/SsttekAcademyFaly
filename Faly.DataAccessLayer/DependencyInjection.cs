@@ -66,6 +66,7 @@ public static class DependencyInjection
         services.AddScoped<IAdminRepository<Course>, AdminRepository<Course>>();
         services.AddScoped<IAdminRepository<Payment>, AdminRepository<Payment>>();
         services.AddScoped<IAdminRepository<OrderDetail>, AdminRepository<OrderDetail>>();
+        services.AddScoped<IAdminAccountRepository, AdminAccountRepository>();
 
         return services;
     }

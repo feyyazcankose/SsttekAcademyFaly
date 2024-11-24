@@ -2,6 +2,7 @@ using Faly.Api.Middlewares;
 using Faly.BussinessLogicLayer;
 using Faly.Core;
 using Faly.DataAccessLayer;
+using Faly.DataAccessLayer.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDataAccessLayer(
@@ -60,7 +62,34 @@ builder.Services.AddSwaggerGen(options =>
     options.EnableAnnotations();
 });
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    await AppDbInitialize.InitializeRoles(serviceProvider);
+    await AppDbInitialize.InitializeUser(serviceProvider);
+}
+
+app.Use(
+    async (context, next) =>
+    {
+        var authorizationHeader = context.Request.Headers["Authorization"].FirstOrDefault();
+
+        if (
+            !string.IsNullOrEmpty(authorizationHeader)
+            && !authorizationHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase)
+        )
+        {
+            context.Request.Headers["Authorization"] = $"Bearer {authorizationHeader}";
+        }
+
+        await next();
+    }
+);
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
@@ -70,9 +99,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseStaticFiles();
+app.UseAuthentication(); // JWT Middleware önce çalıştırılmalı
 app.UseAuthorization();
+app.UseStaticFiles();
 app.MapControllers();
 app.UseHttpsRedirection();
 app.Run();

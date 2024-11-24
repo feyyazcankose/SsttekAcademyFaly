@@ -17,7 +17,7 @@ public class AppDbInitialize
             }
         }
     }
-    
+
     public static async Task InitializeUser(IServiceProvider serviceProvider)
     {
         var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
@@ -33,7 +33,7 @@ public class AppDbInitialize
             {
                 UserName = adminUserName,
                 Email = adminEmail,
-                EmailConfirmed = true
+                EmailConfirmed = true,
             };
 
             var result = await userManager.CreateAsync(adminUser, adminPassword);
