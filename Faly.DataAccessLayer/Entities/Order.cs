@@ -10,4 +10,7 @@ public class Order
     // Navigation Properties
     public ApplicationUser User { get; set; }
     public ICollection<OrderDetail> OrderDetails { get; set; }
+    
+    // Navigation property to Payment
+    public Payment Payment { get; set; }
 }

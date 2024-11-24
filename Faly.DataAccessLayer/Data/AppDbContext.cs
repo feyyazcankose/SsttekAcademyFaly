@@ -30,8 +30,14 @@ public class AppDbContext : IdentityDbContext
                 .HasOne(o => o.User)
                 .WithMany(u => u.Orders)
                 .HasForeignKey(o => o.UserId)
+                
                 .OnDelete(DeleteBehavior.Cascade); // Kullanıcı silindiğinde siparişleri de silinsin.
-
+            
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Payment)
+                .WithOne(p => p.Order)
+                .HasForeignKey<Payment>(p => p.OrderId);
+            
             modelBuilder.Entity<OrderDetail>()
                 .HasKey(od => new { od.OrderId, od.CourseId }); // Composite Key (Bir siparişin bir kursa özel detayı)
 

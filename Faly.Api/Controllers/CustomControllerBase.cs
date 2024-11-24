@@ -5,14 +5,19 @@ namespace Faly.Api.Controllers
 {
     public class CustomControllerBase : ControllerBase
     {
-        protected IActionResult ProblemDetailResult(int statusCode, string title, string detail, string instance = null)
+        protected IActionResult ProblemDetailResult(
+            int statusCode,
+            string title,
+            string detail,
+            string instance = null
+        )
         {
             var problemDetails = new ProblemDetails
             {
                 Status = statusCode,
                 Title = title,
                 Detail = detail,
-                Instance = instance ?? HttpContext.Request.Path
+                Instance = instance ?? HttpContext.Request.Path,
             };
 
             return StatusCode(statusCode, problemDetails);
@@ -43,13 +48,13 @@ namespace Faly.Api.Controllers
                     Status = result.Code != 0 ? result.Code : 400,
                     Title = "Bir hata oluştu",
                     Detail = result.Errors.FirstOrDefault() ?? result.Message,
-                    Instance = HttpContext.Request.Path
+                    Instance = HttpContext.Request.Path,
                 };
 
                 return new ObjectResult(problemDetails)
                 {
                     StatusCode = problemDetails.Status.Value,
-                    ContentTypes = { "application/problem+json" }
+                    ContentTypes = { "application/problem+json" },
                 };
             }
         }
@@ -79,13 +84,13 @@ namespace Faly.Api.Controllers
                     Status = 400, // veya result'tan uygun bir status code alabilirsiniz
                     Title = "Bir hata oluştu",
                     Detail = result.Errors.FirstOrDefault() ?? result.Message,
-                    Instance = HttpContext.Request.Path
+                    Instance = HttpContext.Request.Path,
                 };
 
                 return new ObjectResult(problemDetails)
                 {
                     StatusCode = problemDetails.Status.Value,
-                    ContentTypes = { "application/problem+json" }
+                    ContentTypes = { "application/problem+json" },
                 };
             }
         }

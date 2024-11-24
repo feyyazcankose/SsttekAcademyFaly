@@ -14,6 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Faly.BusinessLogicLayer\Faly.BusinessLogicLayer.csproj" />
       <ProjectReference Include="..\Faly.Core\Faly.Core.csproj" />
     </ItemGroup>
 

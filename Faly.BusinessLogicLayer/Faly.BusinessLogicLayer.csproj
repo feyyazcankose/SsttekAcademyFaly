@@ -7,4 +7,8 @@
         <RootNamespace>Faly.BussinessLogicLayer</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Faly.DataAccessLayer\Faly.DataAccessLayer.csproj" />
+    </ItemGroup>
+
 </Project>
