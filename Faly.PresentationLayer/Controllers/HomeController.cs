@@ -1,31 +1,44 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+using Faly.Core.Dtos.Ecommerce;
 using Faly.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Faly.PresentationLayer.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IHttpClientFactory httpClientFactory)
     {
-        _logger = logger;
+        _httpClientFactory = httpClientFactory;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
-    }
+        var client = _httpClientFactory.CreateClient("ApiClient");
+        var response = await client.GetAsync("api/courses");
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        if (response.IsSuccessStatusCode)
+        {
+            var result = await response.Content.ReadFromJsonAsync<List<CourseDto>>();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // DTO'dan ViewModel'e manuel mapping
+            var viewModel = result
+                .Select(dto => new CourseViewModel
+                {
+                    Id = dto.Id,
+                    Name = dto.Name,
+                    Description = dto.Description,
+                    Price = dto.Price,
+                })
+                .ToList();
+
+            return View(viewModel);
+        }
+        else
+        {
+            return View(new List<CourseViewModel>());
+        }
     }
 }

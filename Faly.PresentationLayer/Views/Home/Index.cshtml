@@ -1,8 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<CourseViewModel>
+@{
+    ViewBag.Title = "Anasayfa";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var course in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="@course.ImageUrl" class="card-img-top" alt="@course.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@course.Name</h5>
+                        <p class="card-text">@course.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="text-primary h5">@course.Price.ToString("C")</p>
+                        <a href="@Url.Action("Details", "Course", new { id = course.Id })" class="btn btn-primary">Detayları Gör</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
