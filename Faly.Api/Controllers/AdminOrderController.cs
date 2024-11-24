@@ -12,6 +12,7 @@ namespace Faly.Api.Controllers;
 [Route("api/admin/orders")]
 [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status400BadRequest)]
 [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
+[ApiExplorerSettings(GroupName = "Admin > Order")]
 public class AdminOrderController : CustomControllerBase
 {
     private readonly IAdminOrderService _adminOrderService;

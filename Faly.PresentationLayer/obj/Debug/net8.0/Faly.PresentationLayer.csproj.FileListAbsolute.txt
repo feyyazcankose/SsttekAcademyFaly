@@ -13,6 +13,7 @@
 /Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/obj/Debug/net8.0/Faly.PresentationLayer.MvcApplicationPartsAssemblyInfo.cache
 /Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/obj/Debug/net8.0/Faly.PresentationLayer.RazorAssemblyInfo.cache
 /Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/obj/Debug/net8.0/Faly.PresentationLayer.RazorAssemblyInfo.cs
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/obj/Debug/net8.0/Faly.PresentationLayer.sourcelink.json
 /Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/obj/Debug/net8.0/staticwebassets.build.json
 /Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/obj/Debug/net8.0/staticwebassets.development.json
 /Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/obj/Debug/net8.0/staticwebassets/msbuild.Faly.PresentationLayer.Microsoft.AspNetCore.StaticWebAssets.props

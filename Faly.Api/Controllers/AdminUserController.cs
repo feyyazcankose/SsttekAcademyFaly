@@ -12,6 +12,7 @@ namespace Faly.Api.Controllers;
 [Route("api/admin/users")]
 [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status400BadRequest)]
 [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
+[ApiExplorerSettings(GroupName = "Admin > User")]
 public class AdminUserController : CustomControllerBase
 {
     private readonly IAdminUserService _adminUserService;

@@ -12,7 +12,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Faly API", Version = "v1" });
+    options.TagActionsBy(api => new[] { api.GroupName });
+    options.DocInclusionPredicate((name, api) => true);
+    options.EnableAnnotations();
+
+    // Diğer Swagger yapılandırmaları...
+});
 builder.Services.AddDataAccessLayer(
     builder.Configuration.GetConnectionString("PostgreSql"),
     builder.Configuration.GetSection("JwtSettings")

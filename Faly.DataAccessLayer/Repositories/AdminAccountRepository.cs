@@ -1,3 +1,4 @@
+using Faly.DataAccessLayer.Entities;
 using Faly.DataAccessLayer.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
@@ -5,9 +6,9 @@ namespace Faly.DataAccessLayer.Repositories;
 
 public class AdminAccountRepository : IAdminAccountRepository
 {
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public AdminAccountRepository(UserManager<IdentityUser> userManager)
+    public AdminAccountRepository(UserManager<ApplicationUser> userManager)
     {
         _userManager = userManager;
     }

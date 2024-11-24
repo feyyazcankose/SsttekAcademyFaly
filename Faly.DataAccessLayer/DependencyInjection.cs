@@ -24,8 +24,9 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
         services
-            .AddIdentity<IdentityUser, IdentityRole>(options =>
+            .AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
+                // Parola ve kullanıcı ayarları
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
@@ -67,6 +68,10 @@ public static class DependencyInjection
         services.AddScoped<IAdminRepository<Payment>, AdminRepository<Payment>>();
         services.AddScoped<IAdminRepository<OrderDetail>, AdminRepository<OrderDetail>>();
         services.AddScoped<IAdminAccountRepository, AdminAccountRepository>();
+        services.AddScoped<ICourseRepository, CourseRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IPaymentRepository, PaymentRepository>();
 
         return services;
     }

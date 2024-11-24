@@ -22,20 +22,24 @@ public class AppDbInitialize
 
     public static async Task InitializeUser(IServiceProvider serviceProvider)
     {
-        var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
         string adminEmail = "dev@ssttek.com";
         string adminUserName = "ssttek";
         string adminPassword = "Ssttek123";
+        string adminFirstName = "Dev";
+        string adminLastName = "Sttek";
 
         var adminUser = await userManager.FindByEmailAsync(adminEmail);
         if (adminUser == null)
         {
-            adminUser = new IdentityUser
+            adminUser = new ApplicationUser
             {
                 UserName = adminUserName,
                 Email = adminEmail,
                 EmailConfirmed = true,
+                FirstName = adminFirstName,
+                LastName = adminLastName,
             };
 
             var result = await userManager.CreateAsync(adminUser, adminPassword);
@@ -49,7 +53,7 @@ public class AppDbInitialize
 
     public static async Task InitializeCourse(AppDbContext context)
     {
-        if (!await context.Category.AnyAsync())
+        if (!await context.Categories.AnyAsync())
         {
             // Seed Kategoriler
             var categories = new List<Category>
@@ -74,7 +78,7 @@ public class AppDbInitialize
                 },
             };
 
-            await context.Category.AddRangeAsync(categories);
+            await context.Categories.AddRangeAsync(categories);
             await context.SaveChangesAsync();
         }
 
@@ -141,7 +145,7 @@ public class AppDbInitialize
                 new CourseCategory { CourseId = courses[5].Id, CategoryId = 3 },
             };
 
-            await context.CourseCategory.AddRangeAsync(courseCategories);
+            await context.CourseCategories.AddRangeAsync(courseCategories);
             await context.SaveChangesAsync();
 
             // Seed Course Sections
@@ -175,7 +179,7 @@ public class AppDbInitialize
                     },
                 };
 
-                await context.CourseSection.AddRangeAsync(sections);
+                await context.CourseSections.AddRangeAsync(sections);
                 await context.SaveChangesAsync();
 
                 // Seed Videos
@@ -209,7 +213,7 @@ public class AppDbInitialize
                         },
                     };
 
-                    await context.Video.AddRangeAsync(videos);
+                    await context.Videos.AddRangeAsync(videos);
                 }
             }
 
