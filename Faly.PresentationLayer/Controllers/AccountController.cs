@@ -98,21 +98,29 @@ public class AccountController : Controller
     [HttpGet]
     public async Task<IActionResult> Profile()
     {
+        // Kullanıcının oturum bilgilerini al
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         if (string.IsNullOrEmpty(userId))
+        {
             return RedirectToAction("Login");
+        }
 
+        // Kullanıcının JWT'sini oturumdan al
         var token = User.FindFirst("AccessToken")?.Value;
         if (string.IsNullOrEmpty(token))
+        {
             return RedirectToAction("Login");
+        }
 
+        // API'den kullanıcı bilgilerini çek
         var client = _httpClientFactory.CreateClient("ApiClient");
+        Console.WriteLine($"Bearer Token: {token}");
         client.DefaultRequestHeaders.Authorization =
             new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
         var response = await client.GetAsync($"api/users/profile");
-        Console.WriteLine(response);
+
         if (response.IsSuccessStatusCode)
         {
             var user = await response.Content.ReadFromJsonAsync<ProfileViewModel>();

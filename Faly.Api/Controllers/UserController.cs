@@ -44,8 +44,11 @@ public class UserController : CustomControllerBase
     public async Task<IActionResult> GetUserProfile()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        Console.WriteLine($"JWT'den alınan User ID: {userId}");
+
         if (string.IsNullOrEmpty(userId))
         {
+            Console.WriteLine("User ID bulunamadı.");
             return Unauthorized("User ID not found in token.");
         }
 
@@ -63,19 +66,14 @@ public class UserController : CustomControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> UpdateUserProfile([FromBody] ProfileUpdateDto profileUpdateDto)
     {
-        Console.WriteLine(profileUpdateDto.PhoneNumber);
         Console.WriteLine("Profile Update");
-        // JWT'den kullanıcı ID'sini al
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (string.IsNullOrEmpty(userId))
         {
             return Unauthorized("User ID not found in token.");
         }
 
-        // Profil bilgilerini güncelle
         var result = await _userService.UpdateUserProfileAsync(userId, profileUpdateDto);
-
-        // Sonucu dön
         return HandleServiceResult(result);
     }
 }
