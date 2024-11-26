@@ -104,4 +104,53 @@ public class UserService : IUserService
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
+
+    public async Task<ServiceResult<UserDto>> GetUserProfileAsync(string userId)
+    {
+        var user = await _userRepository.GetUserByIdAsync(userId);
+        if (user == null)
+        {
+            return ServiceResult<UserDto>.ErrorResult("User not found.");
+        }
+
+        var userDto = new UserDto
+        {
+            Id = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            PhoneNumber = user.PhoneNumber,
+        };
+
+        return ServiceResult<UserDto>.SuccessResult(
+            userDto,
+            "User profile retrieved successfully."
+        );
+    }
+
+    public async Task<ServiceResult> UpdateUserProfileAsync(
+        string userId,
+        ProfileUpdateDto profileUpdateDto
+    )
+    {
+        var user = await _userRepository.GetUserByIdAsync(userId);
+        if (user == null)
+        {
+            return ServiceResult.ErrorResult("User not found.");
+        }
+
+        // Kullanıcı bilgilerini güncelle
+        user.FirstName = profileUpdateDto.FirstName;
+        user.LastName = profileUpdateDto.LastName;
+        user.PhoneNumber = profileUpdateDto.PhoneNumber;
+
+        var result = await _userRepository.UpdateUserAsync(user);
+
+        if (!result.Succeeded)
+        {
+            return ServiceResult.ErrorResult("Failed to update user profile.");
+        }
+
+        return ServiceResult.SuccessResult(200, "User profile updated successfully.");
+    }
 }

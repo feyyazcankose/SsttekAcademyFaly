@@ -29,6 +29,7 @@ public class HomeController : Controller
                 {
                     Id = dto.Id,
                     Name = dto.Name,
+                    ImageUrl = dto.CoverImage,
                     Description = dto.Description,
                     Price = dto.Price,
                 })

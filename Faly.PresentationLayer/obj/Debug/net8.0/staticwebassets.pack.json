@@ -245,6 +245,10 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
+      "Id": "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/wwwroot/logo.png",
+      "PackagePath": "staticwebassets/logo.png"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Faly.PresentationLayer.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

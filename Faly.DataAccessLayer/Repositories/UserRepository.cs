@@ -33,4 +33,9 @@ public class UserRepository : IUserRepository
     {
         return await _userManager.CheckPasswordAsync(user, password);
     }
+
+    public async Task<IdentityResult> UpdateUserAsync(ApplicationUser user)
+    {
+        return await _userManager.UpdateAsync(user);
+    }
 }

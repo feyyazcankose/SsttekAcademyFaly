@@ -93,6 +93,7 @@ public class AppDbInitialize
                     Description = "Learn Python from scratch",
                     Price = 99.99m,
                     IsActive = true,
+                    CoverImage = "/images/6.png",
                 },
                 new Course
                 {
@@ -100,6 +101,7 @@ public class AppDbInitialize
                     Description = "Excel for professionals",
                     Price = 79.99m,
                     IsActive = true,
+                    CoverImage = "/images/5.png",
                 },
                 new Course
                 {
@@ -107,6 +109,7 @@ public class AppDbInitialize
                     Description = "Learn the basics of graphic design",
                     Price = 59.99m,
                     IsActive = true,
+                    CoverImage = "/images/4.png",
                 },
                 new Course
                 {
@@ -114,6 +117,7 @@ public class AppDbInitialize
                     Description = "Introduction to Machine Learning",
                     Price = 129.99m,
                     IsActive = true,
+                    CoverImage = "/images/1.png",
                 },
                 new Course
                 {
@@ -121,6 +125,7 @@ public class AppDbInitialize
                     Description = "Strategies to grow your business",
                     Price = 89.99m,
                     IsActive = true,
+                    CoverImage = "/images/2.png",
                 },
                 new Course
                 {
@@ -128,6 +133,7 @@ public class AppDbInitialize
                     Description = "Master the art of video editing",
                     Price = 69.99m,
                     IsActive = true,
+                    CoverImage = "/images/4.png",
                 },
             };
 

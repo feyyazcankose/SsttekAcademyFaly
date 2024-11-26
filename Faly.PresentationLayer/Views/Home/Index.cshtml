@@ -1,6 +1,6 @@
 ﻿@model List<CourseViewModel>
 @{
-    ViewBag.Title = "Anasayfa";
+    ViewBag.Title = "Home";
 }
 <div class="container mt-5">
     <div class="row">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="card-footer">
                         <p class="text-primary h5">@course.Price.ToString("C")</p>
-                        <a href="@Url.Action("Details", "Course", new { id = course.Id })" class="btn btn-primary">Detayları Gör</a>
+                        <a href="@Url.Action("Details", "Course", new { id = course.Id })" class="btn btn-primary">See Details</a>
                     </div>
                 </div>
             </div>

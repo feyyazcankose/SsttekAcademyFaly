@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+E0WI5dYFYLAoCtP/lQubb3or9gkG77MrI1G1Gg6BR0=",
+  "Hash": "6h8cJqEpbnhrjNJUdxo2iKwYutMJVUqIRTv/Uk3PPCk=",
   "Source": "Faly.PresentationLayer",
   "BasePath": "_content/Faly.PresentationLayer",
   "Mode": "Default",
@@ -1193,6 +1193,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/wwwroot/logo.png",
+      "SourceId": "Faly.PresentationLayer",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.PresentationLayer/wwwroot/",
+      "BasePath": "_content/Faly.PresentationLayer",
+      "RelativePath": "logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/logo.png"
     }
   ]
 }

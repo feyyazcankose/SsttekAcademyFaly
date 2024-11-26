@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Faly.BussinessLogicLayer.Interfaces;
 using Faly.Core.Dtos.Ecommerce;
 using Microsoft.AspNetCore.Mvc;
@@ -31,5 +32,52 @@ public class UserController : CustomControllerBase
     public async Task<IActionResult> Login([FromBody] UserLoginDto loginDto)
     {
         return HandleServiceResult(await _userService.LoginUserAsync(loginDto));
+    }
+
+    [HttpGet("profile")]
+    [SwaggerOperation(
+        Summary = "Get User Profile",
+        Description = "Retrieve user profile from JWT."
+    )]
+    [ProducesResponseType(typeof(UserDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> GetUserProfile()
+    {
+        // JWT'den kullanıcı ID'sini al
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized("User ID not found in token.");
+        }
+
+        // Kullanıcı bilgilerini al
+        var user = await _userService.GetUserProfileAsync(userId);
+        return HandleServiceResult(user);
+    }
+
+    [HttpPut("profile")]
+    [SwaggerOperation(
+        Summary = "Update User Profile",
+        Description = "Update the authenticated user's profile."
+    )]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> UpdateUserProfile([FromBody] ProfileUpdateDto profileUpdateDto)
+    {
+        Console.WriteLine(profileUpdateDto.PhoneNumber);
+        Console.WriteLine("Profile Update");
+        // JWT'den kullanıcı ID'sini al
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized("User ID not found in token.");
+        }
+
+        // Profil bilgilerini güncelle
+        var result = await _userService.UpdateUserProfileAsync(userId, profileUpdateDto);
+
+        // Sonucu dön
+        return HandleServiceResult(result);
     }
 }

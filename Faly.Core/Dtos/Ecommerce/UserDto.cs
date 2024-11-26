@@ -17,6 +17,10 @@ public class UserDto
     [DefaultValue("Doe")]
     public string LastName { get; set; } = default!;
 
+    [SwaggerSchema("Phone Number of the user.")]
+    [DefaultValue("5421413213231")]
+    public string PhoneNumber { get; set; } = default!;
+
     [SwaggerSchema("Email address of the user.")]
     [DefaultValue("john.doe@example.com")]
     public string Email { get; set; } = default!;

@@ -28,6 +28,7 @@ public class CourseController : Controller
                 Id = result.Id,
                 Name = result.Name,
                 Description = result.Description,
+                ImageUrl = result.CoverImage,
                 Price = result.Price,
                 Categories = result.Categories,
                 Sections = result

@@ -13,12 +13,12 @@ ViewBag.Title = Model.Name;
             <p class="text-primary h4">@Model.Price.ToString("C")</p>
             <form asp-action="AddToCart" method="post">
                 <input type="hidden" name="courseId" value="@Model.Id" />
-                <button type="submit" class="btn btn-success">Sepete Ekle</button>
+                <button type="submit" class="btn btn-success">Add to Cart</button>
             </form>
         </div>
     </div>
     <div class="mt-5">
-        <h3>Kurs İçeriği</h3>
+        <h3>Course Content</h3>
         @foreach (var sectionItem in Model.Sections)
         {
         <div class="mt-3">

@@ -94,4 +94,71 @@ public class AccountController : Controller
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return RedirectToAction("Login");
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Profile()
+    {
+        // Kullanıcının oturum bilgilerini al
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (string.IsNullOrEmpty(userId))
+        {
+            return RedirectToAction("Login");
+        }
+
+        // Kullanıcının JWT'sini oturumdan al
+        var token = User.FindFirst("AccessToken")?.Value;
+        if (string.IsNullOrEmpty(token))
+        {
+            return RedirectToAction("Login");
+        }
+
+        // API'den kullanıcı bilgilerini çek
+        var client = _httpClientFactory.CreateClient("ApiClient");
+        client.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+        var response = await client.GetAsync($"api/users/profile");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var user = await response.Content.ReadFromJsonAsync<ProfileViewModel>();
+            return View(user);
+        }
+
+        ModelState.AddModelError("", "Kullanıcı bilgileri alınamadı.");
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Profile(ProfileViewModel model)
+    {
+        if (!ModelState.IsValid)
+            return View(model);
+
+        // Kullanıcının JWT'sini oturumdan al
+        var token = User.FindFirst("AccessToken")?.Value;
+        if (string.IsNullOrEmpty(token))
+        {
+            return RedirectToAction("Login");
+        }
+
+        // Kullanıcı bilgilerini API'ye gönder ve güncelle
+        var client = _httpClientFactory.CreateClient("ApiClient");
+        client.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+        var response = await client.PutAsJsonAsync("api/users/profile", model);
+
+        if (response.IsSuccessStatusCode)
+        {
+            ViewBag.Message = "Profile updated successfully.";
+        }
+        else
+        {
+            ModelState.AddModelError("", "Profile updated error.");
+        }
+
+        return View(model);
+    }
 }

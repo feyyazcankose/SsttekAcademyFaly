@@ -21,6 +21,10 @@ public class CourseDetailDto
     [DefaultValue(29.99)]
     public decimal Price { get; set; }
 
+    [SwaggerSchema("Cover image of the course.")]
+    [DefaultValue("/images/course-cover.jpg")]
+    public string CoverImage { get; set; }
+
     [SwaggerSchema("Indicates whether the course is active.")]
     [DefaultValue(true)]
     public bool IsActive { get; set; }

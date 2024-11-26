@@ -25,6 +25,10 @@ public class CourseDto
     [DefaultValue(true)]
     public bool IsActive { get; set; }
 
+    [SwaggerSchema("Cover image of the course.")]
+    [DefaultValue("/images/course-cover.jpg")]
+    public string CoverImage { get; set; }
+
     [SwaggerSchema("List of categories associated with the course.")]
     [DefaultValue(new[] { "Programming", "Technology" })]
     public List<string> Categories { get; set; } = new();

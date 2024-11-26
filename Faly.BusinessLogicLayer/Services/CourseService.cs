@@ -2,21 +2,25 @@ using Faly.BussinessLogicLayer.Interfaces;
 using Faly.Core;
 using Faly.Core.Dtos.Ecommerce;
 using Faly.DataAccessLayer.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace Faly.BussinessLogicLayer.Services;
 
 public class CourseService : ICourseService
 {
     private readonly ICourseRepository _courseRepository;
+    private readonly IConfiguration _configuration;
 
-    public CourseService(ICourseRepository courseRepository)
+    public CourseService(ICourseRepository courseRepository, IConfiguration configuration)
     {
         _courseRepository = courseRepository;
+        _configuration = configuration;
     }
 
     public async Task<ServiceResult<IEnumerable<CourseDto>>> GetAllCoursesAsync()
     {
         var courses = await _courseRepository.GetAllCoursesAsync();
+        var cdnBaseUrl = _configuration["CDN:BaseUrl"];
         var courseDtos = courses.Select(c => new CourseDto
         {
             Id = c.Id,
@@ -24,6 +28,7 @@ public class CourseService : ICourseService
             Description = c.Description,
             Price = c.Price,
             IsActive = c.IsActive,
+            CoverImage = $"{cdnBaseUrl}{c.CoverImage}",
             Categories = c.CourseCategories.Select(cc => cc.Category.Name).ToList(),
         });
 
@@ -40,6 +45,7 @@ public class CourseService : ICourseService
         {
             return ServiceResult<CourseDetailDto>.ErrorResult("Course not found.");
         }
+        var cdnBaseUrl = _configuration["CDN:BaseUrl"];
 
         var courseDetailDto = new CourseDetailDto
         {
@@ -48,6 +54,7 @@ public class CourseService : ICourseService
             Description = course.Description,
             Price = course.Price,
             IsActive = course.IsActive,
+            CoverImage = $"{cdnBaseUrl}{course.CoverImage}",
             Categories = course.CourseCategories.Select(cc => cc.Category.Name).ToList(),
             Sections = course
                 .Sections.Select(s => new CourseSectionDto
