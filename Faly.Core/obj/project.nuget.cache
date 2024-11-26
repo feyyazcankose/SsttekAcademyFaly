@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "lRuRBW25Ip+3zuLrAbz/bD0sN33p+fLO669uscASxbTScanf2pqTJpODaoJ8NV4E5inqED9DOUc/hBslOn8Aug==",
+  "success": true,
+  "projectFilePath": "/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/Faly.Core.csproj",
+  "expectedPackageFiles": [
+    "/Users/feyyazcankose/.nuget/packages/microsoft.openapi/1.6.22/microsoft.openapi.1.6.22.nupkg.sha512",
+    "/Users/feyyazcankose/.nuget/packages/swashbuckle.aspnetcore.annotations/7.0.0/swashbuckle.aspnetcore.annotations.7.0.0.nupkg.sha512",
+    "/Users/feyyazcankose/.nuget/packages/swashbuckle.aspnetcore.swagger/7.0.0/swashbuckle.aspnetcore.swagger.7.0.0.nupkg.sha512",
+    "/Users/feyyazcankose/.nuget/packages/swashbuckle.aspnetcore.swaggergen/7.0.0/swashbuckle.aspnetcore.swaggergen.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

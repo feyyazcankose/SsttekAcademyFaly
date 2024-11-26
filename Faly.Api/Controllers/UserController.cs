@@ -43,14 +43,12 @@ public class UserController : CustomControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> GetUserProfile()
     {
-        // JWT'den kullanıcı ID'sini al
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (string.IsNullOrEmpty(userId))
         {
             return Unauthorized("User ID not found in token.");
         }
 
-        // Kullanıcı bilgilerini al
         var user = await _userService.GetUserProfileAsync(userId);
         return HandleServiceResult(user);
     }

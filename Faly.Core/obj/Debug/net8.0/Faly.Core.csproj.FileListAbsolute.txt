@@ -1,0 +1,13 @@
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/bin/Debug/net8.0/Faly.Core.deps.json
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/bin/Debug/net8.0/Faly.Core.dll
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/bin/Debug/net8.0/Faly.Core.pdb
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/Faly.Core.csproj.AssemblyReference.cache
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/Faly.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/Faly.Core.AssemblyInfoInputs.cache
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/Faly.Core.AssemblyInfo.cs
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/Faly.Core.csproj.CoreCompileInputs.cache
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/Faly.Core.sourcelink.json
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/Faly.Core.dll
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/refint/Faly.Core.dll
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/Faly.Core.pdb
+/Users/feyyazcankose/workspace/ssttek-academy/Faly/Faly.Core/obj/Debug/net8.0/ref/Faly.Core.dll

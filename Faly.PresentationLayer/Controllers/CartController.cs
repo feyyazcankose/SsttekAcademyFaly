@@ -32,7 +32,6 @@ public class CartController : Controller
         if (response.IsSuccessStatusCode)
         {
             var result = await response.Content.ReadFromJsonAsync<CourseDetailDto>();
-            // var course = JsonConvert.DeserializeObject<CourseViewModel>(result);
 
             var cart =
                 HttpContext.Session.Get<List<CartItemViewModel>>("Cart")
@@ -56,5 +55,22 @@ public class CartController : Controller
             // Hata yönetimi
             return RedirectToAction("Details", "Course", new { id = courseId });
         }
+    }
+
+    [HttpPost]
+    public IActionResult RemoveFromCart(int courseId)
+    {
+        var cart =
+            HttpContext.Session.Get<List<CartItemViewModel>>("Cart")
+            ?? new List<CartItemViewModel>();
+
+        var itemToRemove = cart.FirstOrDefault(c => c.CourseId == courseId);
+        if (itemToRemove != null)
+        {
+            cart.Remove(itemToRemove);
+            HttpContext.Session.Set("Cart", cart);
+        }
+
+        return RedirectToAction("Index", "Cart");
     }
 }

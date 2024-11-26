@@ -6,26 +6,30 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Servisleri ekleme
 builder.Services.AddControllersWithViews();
+
+// JWT Authentication
 builder
     .Services.AddAuthentication("Bearer")
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
+            // Token doğrulama ayarları
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"], // "Jwt:Issuer" null olabilir
-            ValidAudience = builder.Configuration["Jwt:Audience"], // "Jwt:Audience" null olabilir
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])
-            ), // "Jwt:Key" null olabilir
+            ),
         };
     });
 
+// Cookie Authentication
 builder
     .Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -42,6 +46,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+// HTTP istemcisi ekleme
 var apiUrl = builder.Configuration["ApiUrl"];
 builder.Services.AddHttpClient(
     "ApiClient",
@@ -57,11 +62,10 @@ builder.Services.AddHttpClient(
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// HTTP istek hattını yapılandırma
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -70,6 +74,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Session middleware'ini ekleme
+app.UseSession();
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
